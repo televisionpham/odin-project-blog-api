@@ -11,7 +11,10 @@ var authRouter = require("./routes/auth");
 const postRouter = require("./routes/post");
 const commentRouter = require("./routes/comment");
 
+const cors = require("cors");
 var app = express();
+
+app.use(cors());
 
 // Set up mongoose connection
 const mongoose = require("mongoose");
