@@ -8,7 +8,8 @@ const passport = require("passport");
 require("./config/passport");
 
 var authRouter = require("./routes/auth");
-const postRouter = require('./routes/post')
+const postRouter = require("./routes/post");
+const commentRouter = require("./routes/comment");
 
 var app = express();
 
@@ -30,6 +31,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use("/api/auth", authRouter);
-app.use('/api/post', passport.authenticate('jwt', {session: false}), postRouter);
+app.use(
+  "/api/post",
+  passport.authenticate("jwt", { session: false }),
+  postRouter
+);
+app.use(
+  "/api/comment",
+  passport.authenticate("jwt", { session: false }),
+  commentRouter
+);
 
 module.exports = app;
