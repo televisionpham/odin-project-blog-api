@@ -5,6 +5,11 @@ exports.post_get_all = async (req, res, next) => {
   res.json(posts);
 };
 
+exports.post_get = async (req, res, next) => {
+  const post = await Post.findById(req.params.id);
+  res.json(post);
+};
+
 exports.post_create = async (req, res, next) => {
   const postDetail = {
     ...req.body,

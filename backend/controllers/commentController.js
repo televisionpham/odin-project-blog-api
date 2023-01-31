@@ -1,9 +1,11 @@
 const Comment = require("../models/comment");
 
 exports.comment_get_by_post = async (req, res, next) => {
-  const comments = await Comment.find({ post: req.params.postid }).sort({
-    created: 1,
-  });
+  const comments = await Comment.find({ post: req.params.postid })
+    .populate("user")
+    .sort({
+      created: 1,
+    });
   res.json(comments);
 };
 
